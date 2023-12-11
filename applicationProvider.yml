@@ -1,7 +1,6 @@
 spring:
   profiles:
    active: dev
-
 ---
 spring:
   profiles: dev
@@ -13,7 +12,6 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
-
     #Spring Boot 默认是不注入这些属性值的，需要自己绑定
     #druid 数据源专有配置
     initialSize: 5
@@ -27,7 +25,6 @@ spring:
     testOnBorrow: false
     testOnReturn: false
     poolPreparedStatements: true
-
     #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
     #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
     #则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j
@@ -35,26 +32,3 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-
-mybatis:
-  type-aliases-package: com.clover.export.pojo, com.clover.pojo #mybatis实体类别名，从SpringCloud-api中获取的类，进行别名设置
-  mapper-locations: classpath:mybatis/mapper/*.xml
-
-# Eureka配置：配置服务注册中心地址
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
-  instance:
-    instance-id: springcloud-provider-8001 #修改Eureka上的默认描述信息
-    prefer-ip-address: true #鼠标浮动在链接上时，显示其服务所在机器的IP地址
-
-info:
-  app.name: springcloud #项目的名称
-  company.name: com.clover #公司的名称
-
-management:
-   endpoints:
-     web:
-       exposure:
-         include: health,info,hystrix.stream
